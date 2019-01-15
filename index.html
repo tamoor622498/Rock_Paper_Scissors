@@ -1,0 +1,80 @@
+<script>
+    var playerScore = 0;
+    var computerScore = 0;
+    function computerPlayer(){
+        var choise = Math.floor(Math.random() * 3);
+
+        if (choise === 2){
+            return 'rock';
+        }
+
+        if (choise === 1){
+            return 'paper';
+        }
+
+        if (choise === 0){
+            return 'scissors';
+        }
+    }
+
+    function humanPlayer(){
+        var choise = window.prompt('Pick: rock, paper, or scissors', 'rock');
+        choise = choise.toLowerCase();
+        return choise;
+
+    }
+
+    function judge(human, computer){
+        if (human === computer){
+            return 'It is a tie, both picked '+human;
+        }
+        else{
+            if (human === 'rock'){
+                if (computer === 'paper'){
+                    computerScore += 1;
+                    return 'You lose, computer picked '+computer;
+                }
+                else{
+                    playerScore += 1;
+                    return 'You win, computer picked '+computer;
+                }
+            }
+            if (human === 'paper'){
+                if (computer === 'scissors'){
+                    return 'You lose, computer picked '+computer;
+                    computerScore += 1;
+                }
+                else{
+                    playerScore += 1;
+                    return 'You win, computer picked '+computer;
+                }
+            }
+            if (human === 'scissors'){
+                if (computer === 'rock'){
+                    return 'You lose, computer picked '+computer;
+                    computerScore += 1;
+                }
+                else{
+                    playerScore += 1;
+                    return 'You win, computer picked '+computer;
+                }
+            }
+        }
+    }
+
+    function game(){
+        for (var i = 0; i < 5; i++){
+            var human = humanPlayer();
+            var computer = computerPlayer();
+            console.log(judge(human, computer));
+        }
+        if (playerScore > computerScore){
+            console.log('You win the game.');
+        }
+        else{
+            console.log('The computer won.');
+        }
+    }
+
+    game();
+</script>
